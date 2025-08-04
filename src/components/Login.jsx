@@ -13,11 +13,11 @@ const Login = () => {
       </div>
       <div>
 
-      <form className=" w-3/12 absolute p-12 bg-black  my-36 mx-auto right-0 left-0 text-white ">
+      <form className=" w-3/12 absolute p-12 bg-black  my-36 mx-auto right-0 left-0 text-white text-c ">
       <h1 className="font-bold text-3xl py-4">Sign In</h1>
-        <input type="text" placeholder="Email Address" className="p-2 m-2 " />
-        <input type="password" placeholder="Password" className="p-2 m-2 " />
-        <button className="p-4 m-4 bg-red-700 ">Sign in</button>
+        <input type="text" placeholder="Email Address" className="py-2 m-2 w-full " />
+        <input type="password" placeholder="Password" className="py-2 m-2 w-full " />
+        <button className="py-2 m-2 bg-red-700 w-full ">Sign in</button>
       </form>
       </div>
     </div>
