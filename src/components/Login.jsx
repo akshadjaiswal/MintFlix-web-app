@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 
 const Login = () => {
+  const [isSignIn , setIsSignIn]=useState(true)
+
+  const togleSignInForm=()=>{
+  
+      setIsSignIn(!isSignIn)
+    
+  }
   return (
     <div>
       <Header />
@@ -12,13 +19,33 @@ const Login = () => {
         ></img>
       </div>
       <div>
-
-      <form className=" w-3/12 absolute p-12 bg-black  my-36 mx-auto right-0 left-0 text-white text-c ">
-      <h1 className="font-bold text-3xl py-4">Sign In</h1>
-        <input type="text" placeholder="Email Address" className="py-2 m-2 w-full " />
-        <input type="password" placeholder="Password" className="py-2 m-2 w-full " />
-        <button className="py-2 m-2 bg-red-700 w-full ">Sign in</button>
-      </form>
+        <form className=" w-3/12 absolute p-12 bg-black/70  my-36 mx-auto right-0 left-0 text-white text-c rounded-lg">
+          <h1 className="font-bold text-3xl py-4">
+            {isSignIn?"Sign In" :"Sign Up"}</h1>
+          <input
+            type="text"
+            placeholder="Email Address"
+            className="p-4 my-4 w-full bg-gray-800 "
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="p-4 my-4 w-full bg-gray-800 "
+          />
+          {isSignIn?
+          <input
+            type="number"
+            placeholder="Phone No"
+            className="p-4 my-4 w-full bg-gray-800 "
+          />:
+          ""
+          }
+          <button className="p-4 my-4 cursor-pointer bg-red-700 w-full  rounded-lg">
+           {isSignIn?"Sign In" :"Sign Up"}
+          </button>
+          <p className="py-4 text-center cursor-pointer" onClick={togleSignInForm}>New to MintFlix sign up now</p>
+          <p></p>
+        </form>
       </div>
     </div>
   );
