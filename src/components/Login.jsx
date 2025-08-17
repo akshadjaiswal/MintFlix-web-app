@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import Header from "./Header";
 
 const Login = () => {
-  const [isSignIn , setIsSignIn]=useState(true)
+  const [isSignIn, setIsSignIn] = useState(true);
 
-  const togleSignInForm=()=>{
-  
-      setIsSignIn(!isSignIn)
-    
-  }
+  const togleSignInForm = () => {
+    setIsSignIn(!isSignIn);
+  };
   return (
     <div>
       <Header />
@@ -21,29 +19,37 @@ const Login = () => {
       <div>
         <form className=" w-3/12 absolute p-12 bg-black/70  my-36 mx-auto right-0 left-0 text-white text-c rounded-lg">
           <h1 className="font-bold text-3xl py-4">
-            {isSignIn?"Sign In" :"Sign Up"}</h1>
+            {isSignIn ? "Sign In" : "Sign Up"}
+          </h1>
+            {!isSignIn && (
+              <input
+                type="text"
+                placeholder="Name"
+                className="p-4 my-4 w-full bg-gray-800 "
+              />
+            )}
           <input
             type="text"
             placeholder="Email Address"
             className="p-4 my-4 w-full bg-gray-800 "
           />
+          
           <input
             type="password"
             placeholder="Password"
             className="p-4 my-4 w-full bg-gray-800 "
           />
-          {isSignIn?
-          <input
-            type="number"
-            placeholder="Phone No"
-            className="p-4 my-4 w-full bg-gray-800 "
-          />:
-          ""
-          }
           <button className="p-4 my-4 cursor-pointer bg-red-700 w-full  rounded-lg">
-           {isSignIn?"Sign In" :"Sign Up"}
+            {isSignIn ? "Sign In" : "Sign Up"}
           </button>
-          <p className="py-4 text-center cursor-pointer" onClick={togleSignInForm}>New to MintFlix sign up now</p>
+          <p
+            className="py-4 text-center cursor-pointer"
+            onClick={togleSignInForm}
+          >
+            {isSignIn
+              ? "New to MintFlix? SignUp"
+              : "Already have and account? Sign In"}
+          </p>
           <p></p>
         </form>
       </div>
