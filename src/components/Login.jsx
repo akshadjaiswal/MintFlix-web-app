@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import Header from "./Header";
+import { checkValidata } from "../utils/validate";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
 
+  const handleButtonClick =()=>{
+    //Validate
+    checkValidata()
+  }
   const togleSignInForm = () => {
     setIsSignIn(!isSignIn);
   };
@@ -39,7 +44,7 @@ const Login = () => {
             placeholder="Password"
             className="p-4 my-4 w-full bg-gray-800 "
           />
-          <button className="p-4 my-4 cursor-pointer bg-red-700 w-full  rounded-lg">
+          <button className="p-4 my-4 cursor-pointer bg-red-700 w-full  rounded-lg" onClick={handleButtonClick}>
             {isSignIn ? "Sign In" : "Sign Up"}
           </button>
           <p
