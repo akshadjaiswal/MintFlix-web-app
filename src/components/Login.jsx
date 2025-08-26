@@ -5,29 +5,30 @@ import { checkValidata, checkValidataSignUp } from "../utils/validate";
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errMessage, setErrMessage] = useState(null);
+  
 
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
- const handleButtonClick = () => {
-  // Pass all three values for validation when it's the Sign Up form
-  if (!isSignIn) {
-    const checkMessage = checkValidataSignUp(
-      email.current.value,
-      password.current.value,
-      name.current.value,
-    );
-    setErrMessage(checkMessage);
-  }
-  // Pass only email and password for the Sign In form
-  else {
-    const checkMessage = checkValidata(
-      email.current.value,
-      password.current.value
-    );
-    setErrMessage(checkMessage);
-  }
-};
+  const handleButtonClick = () => {
+    // Pass all three values for validation when it's the Sign Up form
+    if (!isSignIn) {
+      const checkMessage = checkValidataSignUp(
+        email.current.value,
+        password.current.value,
+        name.current.value
+      );
+      setErrMessage(checkMessage);
+    }
+    // Pass only email and password for the Sign In form
+    else {
+      const checkMessage = checkValidata(
+        email.current.value,
+        password.current.value
+      );
+      setErrMessage(checkMessage);
+    }
+  };
   const togleSignInForm = () => {
     setIsSignIn(!isSignIn);
   };
