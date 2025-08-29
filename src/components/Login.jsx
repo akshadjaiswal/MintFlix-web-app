@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -47,6 +48,7 @@ const Login = () => {
           // Signed up
           const user = userCredential.user;
           console.log(user);
+          addUser(user)
           // ...
         })
         .catch((error) => {
@@ -68,6 +70,7 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+            setErrMessage(errorCode + "-" + errorMessage);
         });
     }
   };
