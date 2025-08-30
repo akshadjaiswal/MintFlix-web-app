@@ -4,14 +4,16 @@ import { checkValidata, checkValidataSignUp } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errMessage, setErrMessage] = useState(null);
 
+  const navigate = useNavigate();
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -47,30 +49,46 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/111684658?v=4",
+          })
+            .then(() => {
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrMessage(error.message);
+            });
           console.log(user);
-          addUser(user)
+
           // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrMessage(errorCode + "-" + errorMessage);
+          navigate("/");
           // ..
         });
     } else {
       //sign in logic
-      signInWithEmailAndPassword(auth,  email.current.value,
-        password.current.value)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user)
+          console.log(user);
+          navigate("/browse");
           // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-            setErrMessage(errorCode + "-" + errorMessage);
+          setErrMessage(errorCode + "-" + errorMessage);
+          navigate("/");
         });
     }
   };
